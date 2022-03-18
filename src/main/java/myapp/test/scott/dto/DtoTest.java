@@ -1,4 +1,4 @@
-package myapp.test.dto;
+package myapp.test.scott.dto;
 
 import lombok.Data;
 

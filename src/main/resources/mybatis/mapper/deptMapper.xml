@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myapp.test.scott.dao.DeptDao">
+	
+	<insert id="addDept" parameterType="myapp.test.scott.dto.Dept">
+	insert into dept values(#{deptno},#{dname},#{loc})
+	</insert>
+
+	<select id="deptAll" resultType="myapp.test.scott.dto.Dept">
+		select * from dept
+	</select>
+	<select id="deptOne" parameterType="int" resultType="myapp.test.scott.dto.Dept">
+		select * from dept where deptno= #{no}
+	</select>
+	<select id="maxNo" resultType="int">
+		select max(deptno) from dept
+	</select>
+</mapper>
