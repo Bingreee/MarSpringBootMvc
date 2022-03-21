@@ -7,6 +7,14 @@
 	<insert id="addDept" parameterType="myapp.test.scott.dto.Dept">
 	insert into dept values(#{deptno},#{dname},#{loc})
 	</insert>
+	
+	<update id="updateDept" parameterType="myapp.test.scott.dto.Dept">
+		update dept set dname=#{dname}, loc=#{loc} where deptno = #{deptno}
+	</update>
+	
+	<delete id="deleteDept" parameterType="int">
+		delete from dept where deptno= #{deptno}
+	</delete>
 
 	<select id="deptAll" resultType="myapp.test.scott.dto.Dept">
 		select * from dept

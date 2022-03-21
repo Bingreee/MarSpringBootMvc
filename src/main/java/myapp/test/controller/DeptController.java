@@ -68,6 +68,26 @@ public class DeptController {
 		return "redirect:/";
 	}
 	
+	@GetMapping("/delete/{no}")
+	public String delete(@PathVariable("no") int deptno) {
+		System.out.println("delete 수행");
+		dservice.deleteDept(deptno);
+		return "redirect:/deptAll";
+	}
+	
+	@GetMapping("/update/{no}")
+	public String updateForm(@PathVariable("no") int deptno, Model m) {
+		Dept dept = dservice.deptOne(deptno);
+		m.addAttribute("dept",dept);
+		return "dept/updateForm";
+	}
+	
+	@PostMapping("/update")
+	public String update(Dept dept) {
+		dservice.updateDept(dept);
+		return "redirect:/";
+	}
+	
 	
 	
 }

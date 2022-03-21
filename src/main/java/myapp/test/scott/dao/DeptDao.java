@@ -13,4 +13,6 @@ public interface DeptDao {
 	Dept deptOne(int no);//			  레코드 n개 : List <resultType>
 	int maxNo();
 	int addDept(Dept d); //insert, update, delete => int
+	int deleteDept (int deptno);
+	int updateDept(Dept dept);
 }

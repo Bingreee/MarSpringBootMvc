@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="myapp.test.emp.dao.EmpDao">
+
+	<insert id="addEmp" parameterType="myapp.test.emp.dto.Emp">
+		insert into emp values(#{empno},#{ename},#{job},#{loc},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+	</insert>
+	
+	<select id="maxEmpno" resultType="int">
+		select max(empno) from emp
+	</select> 
+	
+	<select id="deptList" resultType="myapp.test.scott.dto.Dept">
+		select * from dept order by deptno
+	</select>
+	
+
+</mapper>
