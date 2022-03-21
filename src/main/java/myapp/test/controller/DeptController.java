@@ -24,10 +24,9 @@ public class DeptController {
 	
 	@GetMapping("/deptAll")
 	public String deptAll(Model m) {
-		
 		List<Dept> dlist = dservice.deptAll();
 		m.addAttribute("deptAll",dlist);
-		
+
 		return "dept/deptAll";
 	}
 	
@@ -35,59 +34,34 @@ public class DeptController {
 	public String deptForm(Model m) {
 		List<Dept> dlist = dservice.deptAll();
 		m.addAttribute("deptAll",dlist);
-		
 		return "dept/deptOne";
 	}
 	
-	@RequestMapping("/dept/{no}")
+	@RequestMapping("/dept/{no}")//템플릿 변수
 	@ResponseBody
 	public String deptOne(@PathVariable int no) {
 		Dept d = dservice.deptOne(no);
-		
 		Gson gson = new Gson();
 		String d_text = gson.toJson(d);
 		System.out.println(d_text);
 		return d_text;
 	}
 	
-	@GetMapping("/insert")
+	@GetMapping("/insert")	
 	public String insertDept(Model m) {
 		int no = dservice.maxNo()+10;
 		m.addAttribute("no",no);
 		return "dept/insertForm";
 	}
-	
 	@PostMapping("/insert")
 	public String insert(Dept dept) {
 		int i = dservice.addDept(dept);
 		if(i != 0) {
 			System.out.println(dept.getDeptno()+"부서 추가");
 		}else {
-			System.out.println(dept.getDeptno()+"부서 추가 못함");
+			System.out.println(dept.getDeptno()+"부서 추가 못함");			
 		}
 		return "redirect:/";
 	}
-	
-	@GetMapping("/delete/{no}")
-	public String delete(@PathVariable("no") int deptno) {
-		System.out.println("delete 수행");
-		dservice.deleteDept(deptno);
-		return "redirect:/deptAll";
-	}
-	
-	@GetMapping("/update/{no}")
-	public String updateForm(@PathVariable("no") int deptno, Model m) {
-		Dept dept = dservice.deptOne(deptno);
-		m.addAttribute("dept",dept);
-		return "dept/updateForm";
-	}
-	
-	@PostMapping("/update")
-	public String update(Dept dept) {
-		dservice.updateDept(dept);
-		return "redirect:/";
-	}
-	
-	
 	
 }

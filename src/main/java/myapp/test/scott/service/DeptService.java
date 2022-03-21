@@ -13,29 +13,17 @@ public class DeptService {
 	
 	@Autowired
 	DeptDao dao;
-	
-	public List<Dept> deptAll () {
+	  
+	public List<Dept> deptAll(){
 		return dao.deptAll();
 	}
-	
 	public Dept deptOne(int no) {
 		return dao.deptOne(no);
 	}
-	
 	public int maxNo() {
 		return dao.maxNo();
 	}
-	
 	public int addDept(Dept d) {
 		return dao.addDept(d);
 	}
-	
-	public int deleteDept (int deptno) {
-		return dao.deleteDept(deptno);
-	}
-	public int updateDept(Dept dept) {
-		return dao.updateDept(dept);
-	}
-	
-	
 }
