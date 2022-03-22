@@ -2,19 +2,44 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="myapp.test.emp.dao.EmpDao">
-
+<mapper namespace="myapp.test.emp.dao.EmpDao"> 
+	
 	<insert id="addEmp" parameterType="myapp.test.emp.dto.Emp">
-		insert into emp values(#{empno},#{ename},#{job},#{loc},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+		insert into emp values(#{empno},#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
 	</insert>
+	
+	<update id="updateEmp" parameterType="myapp.test.emp.dto.Emp">
+		update emp set ename = #{ename},
+						job = #{job},
+						mgr = #{mgr},
+						hiredate = #{hiredate},
+						sal = #{sal},
+						comm = #{comm},
+						deptno = #{deptno},
+					where empno = #{empno}
+	</update>
+	
+	<delete id="deleteEmp" parameterType="int">
+		delete from emp where empno = #{empno}
+	</delete>
 	
 	<select id="maxEmpno" resultType="int">
 		select max(empno) from emp
-	</select> 
+	</select>
 	
 	<select id="deptList" resultType="myapp.test.scott.dto.Dept">
 		select * from dept order by deptno
 	</select>
 	
-
-</mapper>
+	<select id="empNames1" parameterType="int" resultType="map">
+		select empno, ename from emp where deptno=#{deptno}
+	</select>
+	<select id="emp" parameterType="int" resultType="myapp.test.emp.dto.Emp">
+		select * from emp where empno = #{empno}
+	</select>
+	
+	<select id="empNames2" parameterType="string" resultType="map">
+		select empno, ename from emp where ename like '%' || #{ename} || '%'
+	</select>
+	
+</mapper>  

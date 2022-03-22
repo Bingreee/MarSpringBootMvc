@@ -31,4 +31,14 @@ public class EmpService {
 	public Emp emp(int empno) {
 		return dao.emp(empno);
 	}
+	
+	public List<Map<String,Object>> empNames2(String ename) {
+		return dao.empNames2(ename);
+	}
+	public int updateEmp(Emp e) {
+		return dao.updateEmp(e);
+	}
+	public int deleteEmp(int empno) {
+		return dao.deleteEmp(empno);
+	}
 }

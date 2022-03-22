@@ -16,6 +16,9 @@ public interface EmpDao {
 	int addEmp(Emp emp);
 	List<Map<String, Object>> empNames1(int deptno);
 	Emp emp(int empno);
+	List<Map<String,Object>> empNames2(String ename);
+	int updateEmp(Emp e);
+	int deleteEmp(int empno);
 }
 
 

@@ -50,6 +50,11 @@
 				for(let key in data){
 					emp += key +" : "+data[key]+"<br>";
 				}
+				updateloc = "/emp/updateEmp/"+empno;
+				deleteloc = "/emp/deleteEmp/"+empno;
+				emp += "<a href = '"+updateloc+"'>수정</a> "
+				emp += "<a href = '"+deleteloc+"'>삭제</a>"
+				
 				$("#emp").append(emp);
 			})//ajax 성공
 		})//#empno change
