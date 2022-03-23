@@ -2,9 +2,12 @@ package myapp.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+<<<<<<< HEAD
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
+=======
+>>>>>>> branch 'main' of https://github.com/Bingreee/MarSpringBootMvc.git
 @SpringBootApplication
 public class MarSpringBootMvcApplication {
 

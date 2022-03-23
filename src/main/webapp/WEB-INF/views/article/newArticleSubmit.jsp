@@ -8,8 +8,8 @@
 	게시글 등록됨:
 	<%-- <br> 제목: ${ command.title }
 	<br> 내용: ${ command.content } --%>
-	<br> 제목: ${newArticleCommand.title }
-	<br> 내용: ${newArticleCommand.content }
-	<br> 작성일 : ${newArticleCommand.regdate }
+	<br> 제목: ${command.title }
+	<br> 내용: ${command.content }
+	<br> 작성일 : ${command.regdate }
 </body>
 </html>

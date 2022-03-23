@@ -1,0 +1,30 @@
+>Equi join : 참조관계의 컬럼의 같은 값을 기준으로 조인한다.(inner join)
+select 컬럼... from 테이블1 (별칭), 테이블2 (별칭) ...n 
+where 조인 조건(테이블 수 - 1개) and 조건
+
+-inner join
+select 컬럼명... from 테이블1 (별칭) inner join 테이블2 (별칭)
+on 테이블1.컬럼 = 테이블2.컬럼 where 조건
+
+-using : 두 테이블간의 조인 조건에 사용되는 컬럼명이 같다면 Using 사용 
+select 컬럼명... from 테이블1 (별칭) inner join 테이블2 (별칭)
+Using 컬럼명
+
+-natural join : 조건절을 생략하고 자동적으로 공통 컬럼을 찾아 내부적으로 조인문 생성
+select 컬럼명.. from 테이블1 (별칭) NATURAL JOIN 테이블2 (별칭);
+
+
+Non Equi join : 참조관계의 컬럼없이 다른 조건을 사용해 조인한다.
+select * from emp e, salgrade s 
+where e.sal between s.losal and s.hisal;
+
+
+>Outer join : 조인 조건에 만족하지 않는 행도 나타낸다.
+select 컬럼... from 테이블1 (별칭) left/right/full outer join 테이블2 (별칭)
+on 조인 조건;
+
+Self Join : 한 테이블 내에서 조인한다.
+
+-- 상사의 이름을 알아내자!!
+select e.ename||'의 상사는 ' || m.ename||'입니다.' as "상사 정보"
+from emp e, emp m where e.mgr = m.empno;
