@@ -1,0 +1,19 @@
+package myapp.test.vo;
+
+import javax.validation.constraints.*;
+
+import lombok.Data;
+
+@Data
+public class ContentDto {
+    private int id;
+    
+    @NotNull(message="writer is null.")
+    @NotEmpty(message="writer is empty.")
+    @Size(min=3, max=10, message="writer min 3, max 10.")
+    private String writer;
+    
+    @NotNull(message="content is null.")
+    @NotEmpty(message="content is empty.")
+    private String content;
+}
