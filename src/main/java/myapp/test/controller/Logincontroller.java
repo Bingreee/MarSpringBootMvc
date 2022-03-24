@@ -2,6 +2,7 @@ package myapp.test.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,13 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import myapp.test.service.MembersService;
 import myapp.test.vo.LoginDto;
 
-@Controller
 @SessionAttributes("user")
+@Controller
 public class Logincontroller {
 	
-	//세션에 같은 이름으로 저장이 되어있는 경우 동작하지 않는다.
+		@Autowired
+		MembersService mservice;
+	
+	    //세션에 같은 이름으로 저장이 되어있는 경우 동작하지 않는다.
 		//세션에 저장되지 않는 경우 실행 후 리턴값을 세션에 저장한다. 
 		@ModelAttribute("user")
 		public LoginDto getLoginDto() {
@@ -30,18 +35,30 @@ public class Logincontroller {
 			return "login/loginForm";
 		}
 		
+		
 		@RequestMapping("/login")
 		public String login(@Valid LoginDto dto, BindingResult result, Model m) {
 			if(result.hasErrors()) {
 				return "login/loginForm";
 			}
-			if(dto.getId().equals(dto.getPw())) {
-				//로그인 성공 => 세션에 저장
-				m.addAttribute("user", dto);
-			}else {
-				result.reject("nocode","fail to login");//에러 코드 추가
+			
+			String dbpw = mservice.login(dto.getId());
+			
+			if(dbpw == null) {
+				result.reject("nocode", "아이디 틀림");
 				return "login/loginForm";
-			}
+			}else if( dbpw != null && !dbpw.equals(dto.getPw())) {
+				result.reject("nocode", "비번 틀림");
+				return "login/loginForm";
+			}else if(dbpw.equals(dto.getPw())) {
+				m.addAttribute("user", dto);
+			}   
+			/*
+			 * if(dto.getId().equals(dto.getPw())) { //로그인 성공 => 세션에 저장
+			 * m.addAttribute("user", dto); }else {
+			 * result.reject("nocode","fail to login");//에러 코드 추가 return "login/loginForm";
+			 * }
+			 */
 			
 			return "login/login";
 		}
